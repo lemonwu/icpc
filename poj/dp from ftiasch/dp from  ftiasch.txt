@@ -1,0 +1,39 @@
+poj1014 - Dividing
+problem : 有六种物品，每种物品有若干件，判定是否可以把物品分成价值相同的两半。 
+method : dynamic programming
+solve : 假设一种物品有n件，把n拆分为2^0 + 2^1 + 2^2 + ... + 2^k + n - (2^(k+1) - 1 )，这种拆分可以得到0 - n之间的任何正整数。
+
+poj1036 - Gangsters
+problem : 有n个人要到同一个餐馆，每个人都给出进入时间，进入时所需的餐馆状态和进入后的收益，餐馆的状态从0开始，每单位时间能+1、+0、-1，求最大收益。 
+method : dynamic programming
+solve : 将所有人按进入时间排序后，dp[i]表示第i个人成功进入后得到的最大收益，dp[i]=max{dp[j] + i-th prosperity，0 <= i < j && i-th time - j-th time >= | i-th state - j-th state |}。
+
+poj1050 - To the Max
+problem : 给一个n * n的矩阵，求子矩阵的最大和。
+method : dynamic programming
+solve : sum[i][j]表示第i排[1...j]的和，枚举子矩阵的开始列s和结束列e，得到一个长度为n的序列{sum[1][e] - sum[1][s-1] , sum[2][e] - sum[2][s-1] , ... ,sum[n][e] - sum[n][s-1]}，子问题是求这个序列的最大连续和。dp[i]表示以i结尾的最大连续和，dp[i]=max{dp[i-1]+value[i] , value[i]}。
+
+poj1088 - 滑雪
+problem : 给一个r * c的矩阵，每个点有自己height值，并且可以走到比自己height值小的四个相邻的点，求最长路径。
+method : dynamic programming
+solve : dp[i][j]表示走到点(i , j) 获得的最大值，dp[i][j] = max{1，max{dp[x][y]+1，(i , j)可以走到(x , y)}}。
+
+poj1141 - Brackets Sequence
+problem : 给一个括号序列只包含“()[]”，求最短的合法括号序列使给出的括号序列是它的子序列。
+method : dynamic programming
+solve : dp[i][j]表示使[i...j]独立合法的最短需要插入的括号个数，dp[i][j] = min{dp[i+1][j-1](i + 1 <= j - 1并且i和j匹配)，dp[i][k] + dp[k+1][j](i <= k < j)}。
+
+poj1157 - LITTLE SHOP OF FLOWERS
+problem : 给f束花在v种花瓶(v >= f)中获得的观赏值，要求按顺序全部摆放这f束花在花瓶中，空花瓶观赏值为0，求最大观赏值。
+mehtod : dynamic programming
+solve : dp[i][j](f - i <= v - j)表示第i束花摆在第j个花瓶中后获得的最大观赏值，dp[i][j] = max{dp[i-1][k] + value[i][j]，i - 1 <= k <= j - 1}。
+
+poj1159 - Palindrome
+problem : 给一个字符串，求最少插入多少字符能把这个字符串变成回文串。
+method : dynamic programming
+solve : 结果为str -length - longest common subsequence(str , reverse-str)，问题转化为求两个串S,T的longest common subsequence，dp[i][j]表示S[1..i]和T[1...j]的longest common subsequence，如果S[i]=T[j]，那么dp[i][j] = dp[i-1][j-1] + 1，否则dp[i][j] = max{dp[i-1][j] , dp[i][j-1]}。
+
+poj1191 - 棋盘分割
+problem : 将一个8*8的棋盘（每个点有一个分值）进行这样分割，将原棋盘割下一块矩形棋盘并使剩下部分也是矩形，再将剩下的部分继续如此分割。一块矩形棋盘的总分为其所含各格分值之和。将棋盘分割成n块矩形棋盘，并使各个矩形棋盘总分的均方差最小。均方差为，平均值为，其中xi是第i块矩形棋盘的总分。
+method : dynamic programming
+solve : ，所以要使xi的平方和最小。dp[i][x1][y1][x2][y2]表示将左上角坐标为(x1,y1)，右下角坐标为(x2,y2)的矩形切割i次后得到的最小平方和。dp[i][x1][y1][x2][y2]=min{min{dp[i-1][x1][y1][j][y2] + rectangle(j+1,y1,x2,y2)}，min{dp[i-1][j+1][y1][x2][y2] + rectangle(x1,y1,j,y2)}，min{dp[i-1][x1][y1][x2][j] + rectangle(x1,j+1,x2,y2)}，min{dp[i-1][x1][j+1][x2][y2] + rectangle(x1,y1,x2,j)}}。特别注意矩形能够被切割n次的条件。
