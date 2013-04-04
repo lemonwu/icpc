@@ -1,0 +1,29 @@
+Poj1936 - All in All
+Problem：判断一个字符串去掉一些字符后能不能变成另一个字符串。
+Method：greedy
+Solve：用两个指针分别指向两个字符串，根据目标串向后移动指针。
+
+Poj2408 - Anagram Groups
+Problem：将给定字符串组按规则进行输出。
+Method：sort
+
+Poj2359 - Questions
+Problem：给定长度为n（下标[0...n - 1]）的字符串，从下标为0的字符开始数，数到k就删除该字符，然后从下个字符数，求最后剩下的单个字符。
+Method：dynamic programming
+Solve：dp[n][k]表示长度为n的串数到k删除字符，最后得到单个字符在原串中的下标。我们考虑序列，开始为{0、1、2、3...n - 1}，然后我们删除第k个字符，它的下标为x = (k - 1) % n，它的下一个的下标为y = k % n，删除后得到序列{0、1、2、3...y - 2、y、y + 1...n - 1}，我们把它转化成{y、y + 1...n - 1、0、1、2...y - 2}，再转化成{0、1、2...n - 2}，变成了长度为n - 1的串的相同问题，可以用dp[n - 1][k]表示，我们考虑下标变换，逆着回去，序列4变成序列3需要index’ = (index + y) % n = (index + k % n) % n = (index + k) % n，所以有dp[n][k] = (dp[n - 1][k] + k) % n。并且dp[1][k] = 0。
+
+Poj1750 - Dictionary
+Problem：将给定字符串组按规则输出。
+Method：simulattion
+
+Poj2752 - Seek the Name, Seek the Fame
+Problem：求对于一个字符串满足前n个字符等于后n个字符的n有哪些。
+Method：kmp，recursion
+Solve：用kmp求出p[]，然后递归求解。
+
+Poj1961 - Period
+Problem：给定一个字符串，问它的每个前缀是否能够被表示成A ^ k（k > = 2），其中A表示1个字符串，k表示A重复k次。
+Method：kmp
+Solve：用kmp求出p[]。字符串S[0...|S| - 1]的最小循环节为|S| - 1 - p[|S| - 1]（不考虑最后一节）。有上述定理知，如果|S| % (minimum loop length) == 0，可以用A ^ k（k >= 2）表示字符串S。
+
+
