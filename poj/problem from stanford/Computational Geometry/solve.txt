@@ -1,0 +1,50 @@
+Poj1905 - Expanding Rods
+Problem：已知弧长和弦长求弧的最高点到弦的距离。
+Method：binary search
+Solve：设结果为x，那么(r - x) ^ 2 + (弦长 / 2) ^ 2 = r ^ 2。可以解得r，根据r和弧长的关系二分。
+
+Poj2653 - Pick-up sticks
+Problem：给n条线段，出现顺序由下向上，问那些线段没有其他线段压住。
+Method：segment intersect check，bruce force
+Solve：暴力。 如何判断两条线段是否相交：排斥实验（检查以线段为对角线的的矩形是否相交），跨立实验（检查在排斥实验失败的情况下，判断两条线段是否相交）。
+
+poj2318 - TOYS
+Problem：给定一个长方形箱子，中间有n条线段，将其分为n+1个区域，给定m个玩具的坐标，统计每个区域中的玩具个数。
+Method：Binary Search
+Solve：二分出玩具所在的区间，然后统计。
+
+Poj2074 - Line of Sight
+Problem：从一条直线上观察另一与之平行的直线，求得可见整条直线点的最长范围，其中有很多平行直线障碍物。
+Method：vector
+Solve：对每个障碍物求它挡住的线段，最后将这些线段合并。
+
+poj1696 - Space Ant
+Problem：一只蚂蚁,只会向左转,现在给出平面上很多个点,求解一种走法,能使得蚂蚁能经过的点最多,每个顶点该蚂蚁只能经过一次,且所行走的路线不能发生交叉。
+Method：Convex Hull，Gift Wrapping Algorithm
+Solve：我们考虑这些点的凸包，每次都走凸包，走完后去掉在凸包上的点，再求凸包...内外层凸包可以通过左转连接，所以一定存在路线可以走完这些点。用卷包裹法求凸包，从左下角的点开始走，每次走没走过的最外侧的点，知道所有点走完（如果共线就先走近的）。
+
+poj2540 - Hotter Colder
+Problem：两个人玩藏东西，一个藏，一个找，屋子的大小是（0,0）到（10,10）的正方形，从（0,0）开始找，每次都会提示比前一次近还是远，问每次的可能在的区域大小。
+Method：Half-plane Intersection
+Solve：求出这次找的点和上次找的点的垂直平分线，根据提示找出可行域，用半平面交取可行域的并。
+
+poj1228 - Grandpa's Estate
+Problem：判断一个凸包是不是稳定凸包，稳定凸包的定义：在以前点的基础上，不能继续向外扩展凸包。
+Method：Stable Convex Hull，Gift Wrapping Algorithm
+Solve：由稳定凸包的定义知道，凸包的每条边上至少有3个点，用卷包裹法求凸包并判断每条边上是否满足至少3个点。
+
+poj1408 - Fishnet
+Problem：一个1 * 1的正方形，每条边上有n个不同的点（不包括顶点），并给出它们的坐标。现在把对边相对应的点相连，将正方形分割成(n + 1) * (n + 1)个小四边形。问最大的四边形的面积是多少。
+Method：line-line-intersection，bruce force
+Solve：暴力。
+
+poj1584 - A Round Peg in a Ground Hole
+Problem：按照顺时针或逆时针方向输入一个n边形的顶点坐标集，先判断这个n边形是否为凸包。再给定一个圆形（圆心坐标和半径），判断这个圆是否完全在n边形内部。
+Method：Convex Hull，Circle
+Solve：首先用叉积判定n边形是否为凸包，然后用叉积判断圆心是否在n边形内部，以及圆心到n边形各边的距离都大于r。
+
+poj3525 - Most Distant Point from the Sea
+Problem：求凸多边形的最大内切圆半径。
+Method：Binary Search; Half-plane Intersection，Convex Hull
+Solve：二分答案，将问题变成判定性问题，然后平移每条边，用半平面交判断是否存在可行域。
+
