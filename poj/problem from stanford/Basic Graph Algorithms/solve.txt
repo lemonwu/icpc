@@ -1,0 +1,53 @@
+Poj1308 - Is It A Tree?
+Problem：判断所给图是否为一棵树。
+Method：binary search， bfs
+Solve：注意根据题意空集也是一棵树，其余情况可以用广度优先搜索判断。
+
+Poj1258 - Agri-Net
+Problem：求一个图的最小生成树总权重。
+Method：minimum spanning tree，prim;，kruskal
+
+Poj2488 - A Knight's Journey
+Problem：给一个r*c的棋盘，问能否用马的走法一次遍历每个点，如果存在路线，输出字典序最小的。
+Method：dfs
+Solve：深度优先搜索，优先搜索字典序小的。
+
+Poj1164 - The Castle
+Problem：给一个图，求图的最大连通块和连通块个数。
+Method：dfs
+
+Poj2395 - Out of Hay
+Problem：有一个连通图，从顶点1出发到其他所有的顶点，单位距离耗费单位水量，求所需水壶的最小容量，每次到达顶点可以不从水壶到上限。
+Method：minimum spanning tree，kruskal
+Solve：求最小生成树的最大边。
+
+Poj1945 - Power Hungry Cows
+Problem：给定两个变量a、b，起初a=x,b=1，每次可以执行a*a,a*b,b*b,a/b,b/a,a/a,b/b七种操作，并且把结果存到其中一个变量里，另一个变量不变，并且执行过程中变量里存储的必须是整数。问至少需要多少步使得两个变量中其中一个的值为x^p。
+Method：bfs
+Solve：乘除运算可以转化为指数加减。指数为（x，y）假设y >= x，可以转移到（x，2*x），（x，2*y），（x，x+y），（x，y-x），（y，2*x）,（y，2*y），（y，x+y），（y，y-x）这八种状态。广度优先搜索答案。
+
+Poj3275 - Ranking the Cows
+Problem：给n头牛的m个关系，问最少还需要知道多少关系才能知道所有牛的关系。
+Method：dfs
+Solve：用dfs求出现在知道的关系的个数x，然后考虑最坏情况n * (n - 1) / 2 - x即为结果。
+
+Poj1985 - Cow Marathon
+Problem：求树的直径（最长链）。
+Method：bfs
+Solve：从任一点出发bfs找到最远点后，再从最远点出发bfs，得到的最远距离就是最长链。注意图可能不连通。
+
+poj2337 - Catenyms
+Problem：给定一个图，判断是否为欧拉图，如果是，输出字典序最小的欧拉通路。
+Method：euler graph
+Solve：欧拉图：对于给定的连通图，如果存在着一个恰好包含了所有的边并且没有重复的路径的图称为欧拉图，该路径称为欧拉通路，如果是路径闭合，称为欧拉回路。连通的无向图 G有欧拉路径的充要条件是：G中奇顶点（连接的边数量为奇数的顶点）的数目等于0或者2。连通的无向图G是欧拉环（存在欧拉回路）的充要条件是：G中每个顶点的度都是偶数。欧拉通路的输出用栈。
+
+Poj1944 - Fiber Communications
+Problem：给定n个点，围成一个圈。然后给出p对点对，要求每个点对之间都有线，连线只能绕着圈连，问完成任务，最少需要多少条线。
+Method：segment tree
+Solve：将圈从1 - n断开，并扩展成1 - 2 * n，n+1表示1...然后首先把所有要连接的线段插入线段树，初始化答案，然后枚举断掉的线段，每次在线段树中删除覆盖到该线段的线段[l,r]，然后在线段树中添加[r,n+l]，更新答案，注意添加线段时也要添加到线段数组中。
+
+
+
+
+
+
