@@ -1,0 +1,24 @@
+Poj1273 - Drainage Ditches
+Problem：求最大流。
+Method：max flow；
+Solve：dinic求最大流。
+
+Poj1274 - The Perfect Stall
+Problem：求二分图的最大匹配。
+Method: bipartite graph；max flow；
+Solve：二分图的最大匹配，用最大流解决。构图：虚拟一个源点，一个汇点，源点向左边顶点加一条容量为1的边，右边顶点向汇点加一条容量为1的边，能够匹配的左边顶点向右边顶点加一条容量为1的边。
+
+Poj2112 - Optimal Milking
+Problem：有n头牛，m个机器，一个机器最多可以容纳x头牛，[1,n+m]之间的距离已知，求满足每头牛都有匹配的机器的牛需要走的最远距离。
+Method：max flow;  bianry search;  floyd-warshall algorithm;
+Solve:首先用动态规划求出[1,n+m]之间的最短距离，然后二分牛需要走的最远距离，把问题变成判定性问题。构图用最大流判断。构图：虚拟源点和汇点，源点向每头牛连一条容量为1的边，每个机器向汇点连一条容量为x的边，然后牛和机器间最小距离不超过最远距离的连一条容量为1的边。
+
+Poj3041 - Asteroids
+Problem：在一个n*n的格子上有一些敌人，每次可以消灭在一行或在一列的所有敌人，求最小需要操作的次数。
+Method：max flow; bipartite graph; K?nig's Theorem;minimum edge cover;
+Solve：让我们建一个二分图，一个集合为所有列，另一个集合为所有行，将敌人所在的行列连一条边，那么现在就是要求用最少的点让每条边都至少和其中一个点关联，即时最小覆盖。由K?nig's Theorem知道最小覆盖=最大匹配。问题转化为求二分图的最大匹配，用最大流求解。
+
+Poj3308 - Paratroopers;
+Problem:题意类似poj3041，只不过消灭每行和每列都有一个花费，最后总的花费为这些花费的乘积。求消灭所有敌人的最小花费。
+Method:max flow; bipartite graph; minimum cut; mimimum cost edge cover;
+Solve： 用log和exp可以化乘为加。题目变为求二分图的最小权覆盖。最小权覆盖可以转化为最大流求解。构图和poj3041类似，只是把源点到左边集合的边容量变成log（花费），右边集合到汇点的边容量变成log（花费），然后求最大流即可。
